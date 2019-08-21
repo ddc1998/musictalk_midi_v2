@@ -36,7 +36,7 @@ def on_signal(signal, df_list):
         connect_flag = 1
         print("CONNECT!!!!!")
         job_of_play_music()
-        time.sleep(0.9)
+        time.sleep(0.7)
         for df_name in df_list:
             _flags[df_name] = True
             t = Thread(target=push_data, args=(df_name, ))
@@ -144,7 +144,7 @@ def main(app):
             raise RegistrationError('unknown odf_list, usage: [df_name, ...]')
 
     context = register(
-        'http://{}:{}'.format(host, port),
+        host,
         on_signal=on_signal,
         on_data=on_data,
         accept_protos=['mqtt'],
@@ -171,7 +171,7 @@ import threading
 from pydub import AudioSegment
 from pydub.playback import play
 ### The register server host, you can use IP or Domain.
-host = 'iottalk2.tw'
+host = 'http://garden2.iottalk.tw/csm'
 
 def job_of_play_music():
     """ create a thread to play music """

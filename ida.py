@@ -8,7 +8,7 @@ import pygame as pg
 import dan
 import dai
 ### The register server host, you can use IP or Domain.
-host = 'iottalk2.tw'
+host = 'http://garden2.iottalk.tw/csm'
 
 ### [OPTIONAL] The register port, default = 9992
 # port = 9992
@@ -26,19 +26,19 @@ host = 'iottalk2.tw'
 username = 'A'
 
 ### The Device Model in IoTtalk, please check IoTtalk document.
-device_model = 'Music_midi'
+device_model = 'Musictalk'
 
 ### The input/output device features, please check IoTtalk document.
-idf_list = ['Note']
+idf_list = ['Note_i']
 odf_list = ['Note_o']
 
 ### Set the push interval, default = 1 (sec)
 ### Or you can set to 0, and control in your feature input function.
-usr_interval = 0
+#usr_interval = 0
 
 push_interval = 0  # global interval
 interval = {
-    'Note': 0,  # assign feature interval
+    'Note_i': 0,  # assign feature interval
 }
 
 def register_callback():
@@ -147,14 +147,14 @@ def ToDoList(music_file):
 ToDoList(music_file)
                     
 seq = 0
-def Note():    	
+def Note_i():    	
     global time_sleep_list, color_list, seq
     while (seq < len(color_list)):
         time.sleep(time_sleep_list[seq])
         seq += 1
         #print (color_list[seq-1])
         # str1 = ','.join(str(i) for i in color_list[seq-1])
-        print('color list:', color_list[seq-1])
+        #print('color list:', color_list[seq-1])
         # print([i for i in color_list[seq-1]])
         # str2 = str(time_sleep_list[seq-1])+','+str1
         # print (str2)
@@ -171,7 +171,7 @@ def Dummy_Sensor():
 
 def Note_o(data):  # data is a list
     print (data)
-    return 0
+    return data
 '''
 
     while (DAN.state != 'SET_DF_STATUS'):
